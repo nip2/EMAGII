@@ -63,7 +63,7 @@ F = S./S_max;                % normalized radiation intensity
 
 
 figure(count)
-plot(theta,F)
+polarplot(theta,F);
 title('$F(\theta)(z)$ vs z','Interpreter','latex');
 xlabel('$z$, length of antenna $(m)$','Interpreter','latex');
 ylabel('$F(\theta) (A)$','Interpreter','latex');
