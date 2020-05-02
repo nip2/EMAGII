@@ -40,12 +40,24 @@ ylabel('$\widetilde{I}$(z) (A)','Interpreter','latex')
 %%
 
 % part 2)
-eta_0 = 120*pi;
-R = 1;
+eta_0 = 120*pi;              % intrinsic impedance
+R = 1;                       % distance from the z-axis
 theta = linspace(-pi,pi,N);
 E_theta = 1i*60*I0*(exp(-1i*k*R)/R).*((cos(k*L/2.*cos(theta))-cos(k*L/2))./sin(theta));
 ab_E = (abs(E_theta)).^2;
 S = ab_E./(2*eta_0);
 S_max = max(S, [], 'all');
-F = S./S_max;
+F = S./S_max;                % normalized radiation intensity
+%alternatively, 
+% F = [(cos((pi*L)\lambda)*cos(theta))-cos((pi*L/lambda)/(sin(theta)))]^2;
+
+%figure(2)
+%plot(z,F);
+%title('$F(\theta)$(z) vs z','Interpreter','latex');
+%xlabel('z, length of antenna (m)','Interpreter','latex');
+%ylabel('$F(\theta)$ (A)','Interpreter','latex');
+%grid minor
+
+
+
 
