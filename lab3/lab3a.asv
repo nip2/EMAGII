@@ -1,6 +1,8 @@
 % ECE332: lab 3
 
 % part 1)
+% an antenna of length L, along the z axis with center at the origin
+% a current, at microwave range of frequency, through the antenna
 
 c = 2.99792458*10^8;% speed of light
 I0 = 1;             % current amplitude
@@ -26,6 +28,16 @@ end
 % the above code works, but is bulky. use below instead:
 I = I0.*sin(k.*(L/2-abs(z)));
 
+% plot phasor current distribution I(z) vs position on antenna, z
+% this plot looks right because the length of the antenna is 
+% shorter than 1.5*lambda of the signal frequency, so the 
+% full waveform doesn't fit
 plot(z,I)
 title('$\widetilde{I}$(z) vs z','Interpreter','latex')
-xlabel('z 
+xlabel('z, length of antenna (m)','Interpreter','latex')
+ylabel('$\widetilde{I}$(z) (A)','Interpreter','latex')
+
+%%
+
+% part 2)
+
