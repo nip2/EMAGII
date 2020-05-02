@@ -41,10 +41,11 @@ plot(z,I)
 title('$\widetilde{I}$(z) vs z','Interpreter','latex')
 xlabel('z, length of antenna (m)','Interpreter','latex')
 ylabel('$\widetilde{I}$(z) (A)','Interpreter','latex')
+grid minor
 
 count = count + 1;
-%%
 
+%%
 % part 2)
 eta_0 = 120*pi;              % intrinsic impedance
 R = 1;                       % distance from the z-axis
@@ -66,5 +67,13 @@ F = S./S_max;                % normalized radiation intensity
 
 figure(count)
 plot(theta,F)
+title('$F(\theta)$(z) vs z','Interpreter','latex');
+xlabel('z, length of antenna (m)','Interpreter','latex');
+ylabel('$F(\theta)$ (A)','Interpreter','latex');
+grid minor
 
 count = count + 1;
+
+%%
+% part 3
+
