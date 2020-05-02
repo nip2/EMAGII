@@ -40,4 +40,12 @@ ylabel('$\widetilde{I}$(z) (A)','Interpreter','latex')
 %%
 
 % part 2)
+eta_0 = 120*pi;
+R = 1;
+theta = linspace(-pi,pi,N);
+E_theta = 1i*60*I0*(exp(-1i*k*R)/R).*((cos(k*L/2.*cos(theta))-cos(k*L/2))./sin(theta));
+ab_E = (abs(E_theta)).^2;
+S = ab_E./(2*eta_0);
+S_max = max(S, [], 'all');
+F = S./S_max;
 
