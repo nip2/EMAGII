@@ -64,9 +64,6 @@ F = S./S_max;                % normalized radiation intensity
 %ylabel('$F(\theta)$ (A)','Interpreter','latex');
 %grid minor
 
-
-
-
 figure(count)
 plot(theta,F)
 
