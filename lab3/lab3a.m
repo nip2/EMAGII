@@ -1,4 +1,8 @@
 % ECE332: lab 3
+clc
+close all
+clear all
+count = 1;
 
 % part 1)
 % an antenna of length L, along the z axis with center at the origin
@@ -32,11 +36,13 @@ I = I0.*sin(k.*(L/2-abs(z)));
 % this plot looks right because the length of the antenna is 
 % shorter than 1.5*lambda of the signal frequency, so the 
 % full waveform doesn't fit
+figure(count)
 plot(z,I)
 title('$\widetilde{I}$(z) vs z','Interpreter','latex')
 xlabel('z, length of antenna (m)','Interpreter','latex')
 ylabel('$\widetilde{I}$(z) (A)','Interpreter','latex')
 
+count = count + 1;
 %%
 
 % part 2)
@@ -49,3 +55,7 @@ S = ab_E./(2*eta_0);
 S_max = max(S, [], 'all');
 F = S./S_max;
 
+figure(count)
+plot(theta,F)
+
+count = count + 1;
