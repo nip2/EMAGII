@@ -36,6 +36,7 @@ I = I0.*sin(k.*(L/2-abs(z)));
 % this plot looks right because the length of the antenna is 
 % shorter than 1.5*lambda of the signal frequency, so the 
 % full waveform doesn't fit
+
 figure(count)
 plot(z,I)
 title('$\widetilde{I}$(z) vs z','Interpreter','latex')
@@ -47,6 +48,8 @@ count = count + 1;
 
 %%
 % part 2)
+
+
 eta_0 = 120*pi;              % intrinsic impedance
 R = 1;                       % distance from the z-axis
 theta = linspace(-pi,pi,N);
@@ -55,25 +58,29 @@ ab_E = (abs(E_theta)).^2;
 S = ab_E./(2*eta_0);
 S_max = max(S, [], 'all');
 F = S./S_max;                % normalized radiation intensity
-%alternatively, 
+%alternatively, we should see if this is equivalent 
 % F = [(cos((pi*L)\lambda)*cos(theta))-cos((pi*L/lambda)/(sin(theta)))]^2;
 
-%figure(2)
-%plot(z,F);
-%title('$F(\theta)$(z) vs z','Interpreter','latex');
-%xlabel('z, length of antenna (m)','Interpreter','latex');
-%ylabel('$F(\theta)$ (A)','Interpreter','latex');
-%grid minor
 
 figure(count)
 plot(theta,F)
-title('$F(\theta)$(z) vs z','Interpreter','latex');
-xlabel('z, length of antenna (m)','Interpreter','latex');
-ylabel('$F(\theta)$ (A)','Interpreter','latex');
+title('$F(\theta)(z)$ vs z','Interpreter','latex');
+xlabel('$z$, length of antenna $(m)$','Interpreter','latex');
+ylabel('$F(\theta) (A)$','Interpreter','latex');
 grid minor
 
 count = count + 1;
 
 %%
-% part 3
+% part 3)
+% The pattern solid angle Omega_p and directivity D are measures of how narrow an antenna’s 
+% radiation pattern is.  They are related by D = 4*pi/Omega_p.  An isotropic antenna has 
+% Omega_p = 4*pi and D = 1.  The narrower the radiation pattern, the smaller pand the larger D.
+% Find pand D by numerically integrating F(theta) for the 1.25*lambda antenna in the steps above.  
+% The integration can be approximated by Omega_p≈ 2Fi().  
+% You’ll need to define an increment of F for each increment of .  
+% The smaller the increment, the more accurate the approximation.  
+% Answers will vary a bit, but you should get Omega_p≈ 3.8. 
+% Alternately, you can use an integration routine in MATLAB if you prefer.
+
 
