@@ -1,4 +1,8 @@
 % ECE332: lab 3
+clc
+close all
+clear all
+count = 1;
 
 % part 1)
 % an antenna of length L, along the z axis with center at the origin
@@ -32,16 +36,45 @@ I = I0.*sin(k.*(L/2-abs(z)));
 % this plot looks right because the length of the antenna is 
 % shorter than 1.5*lambda of the signal frequency, so the 
 % full waveform doesn't fit
+figure(count)
 plot(z,I)
 title('$\widetilde{I}$(z) vs z','Interpreter','latex')
 xlabel('z, length of antenna (m)','Interpreter','latex')
 ylabel('$\widetilde{I}$(z) (A)','Interpreter','latex')
+grid minor
+
+count = count + 1;
 
 %%
-
 % part 2)
-R = 1;
+eta_0 = 120*pi;              % intrinsic impedance
+R = 1;                       % distance from the z-axis
 theta = linspace(-pi,pi,N);
 E_theta = 1i*60*I0*(exp(-1i*k*R)/R).*((cos(k*L/2.*cos(theta))-cos(k*L/2))./sin(theta));
-S(theta) = (abs(E_theta)).^2./(2*eta_0);
-F(theta) = 
+ab_E = (abs(E_theta)).^2;
+S = ab_E./(2*eta_0);
+S_max = max(S, [], 'all');
+F = S./S_max;                % normalized radiation intensity
+%alternatively, 
+% F = [(cos((pi*L)\lambda)*cos(theta))-cos((pi*L/lambda)/(sin(theta)))]^2;
+
+%figure(2)
+%plot(z,F);
+%title('$F(\theta)$(z) vs z','Interpreter','latex');
+%xlabel('z, length of antenna (m)','Interpreter','latex');
+%ylabel('$F(\theta)$ (A)','Interpreter','latex');
+%grid minor
+
+
+figure(count)
+plot(theta,F)
+title('$F(\theta)$(z) vs z','Interpreter','latex');
+xlabel('z, length of antenna (m)','Interpreter','latex');
+ylabel('$F(\theta)$ (A)','Interpreter','latex');
+grid minor
+
+count = count + 1;
+
+%%
+% part 3
+
