@@ -5,7 +5,7 @@
 %-------ECE332 Lab, Spring 2020: Special remote education edition---------%
 
 % Lab student co-authors: Nicholas Porter, Regan Garner, Grace Semerjian
-% Date: 5/?/2020
+% Date: 5/3/2020
 
 %% Clear out junk
 clear, clc, close all
@@ -13,15 +13,10 @@ clear, clc, close all
 %% Part a) Use MATLAB to make the following plots of |~Ez|
 
 % These plots are all of a slice across the waveguide at a fixed z, the 
-% Front view below. You can pick any a and Eo, but let b = a/2.  We’re not 
+% Front view below. You can pick any a and Eo, but let b = a/2.  Weâ€™re not 
 % worried about the numbers, just a clear representation of the field patterns. 
 
 %(i) a 1-d plot of |Ez| vs. x at y = b/2
-
-%condition for a is that
-% a > (m*lambda)/2                   ?????
-% condition for b
-% b > m*lambda
 
 syms x;
 epsilon = 8.854*(10^-12); % electric permittivity / dielectric constant 
@@ -70,11 +65,23 @@ grid on
 colorbar
 view(3)
 
+%Comments on the 3 figures
+%The 1-D, 2-D, and 3-D figures all seem to agree in the plot for |~Ez|. We
+%can judge this by the outlines, values, and colors. If we compare the 1-D
+%plot versus the 3-D plot we see that the cross section checks out with the
+%surface plot with the x values vs the |~Ez| values @ y = b/2. Note that
+%for the 3-D plot x was from [-a,a] but our cross-section is from [0,a]. If
+%we then compare the 2-D contour plot with the 3-D surface plot we see that
+%again, the placements line up as do their colors that denote their values.
+%Again, note that for the 3-D plot x was from [-a,a] but our contour plot
+%is from [0,a]. Lastly, as a brief sanity check, we should be expecting a 
+%sinusoidal function as our plot for |~Ez|, and that is what we see here.
+
 
 %% Part b) Create three additional plots. 
 % One should be a different mode, one a different a and b ratio, and one 
-% should be |~Hz|.  Exactly what you do here – which mode, what ratio, what 
-% type of plot – is up to you. Experiment a bit, and turn in whatever you 
+% should be |~Hz|.  Exactly what you do here â€“ which mode, what ratio, what 
+% type of plot â€“ is up to you. Experiment a bit, and turn in whatever you 
 % think is interesting and informative.
 
 % Plot of a different mode. Let m = 8 & n = 24
@@ -145,10 +152,42 @@ grid on
 colorbar
 view(3)
 
+%Comments on the 3 figures
+%For the first figure in Part b) we're playing around with changing the
+%mode (we let m = 8 & n = 24) while leaving all of the other paramters from
+%part a the same for the |~Ez| phasor component. We went with a surface
+%plot to gain a more bird's eye view of what's going on with the TM wave.
+%As we can see, it gets a whole lot more cluttered with higher frequency
+%sinusoidal waves, but remain within the same amplitude as we saw in Pt a).
+%This makes sense as the arguments for |~Ez| sin()'s are much larger than 
+%before. For the second plot we messed around with changing the a and b 
+%ratio while keeping everything from Part a) the same. Judging from the 
+%provided surface plot (and the other plots we had when playing around with 
+%other values), it appears that even when a and b vary, the overall shape 
+%and amplitude that we saw in Pt. a) does not change. Note that for this
+%plot x was from [-a,a] and y is from [-b,b]. It's merely scaled to
+%the larger (or smaller a and b) values over space. Again, this is expected
+%if we look in the arguments for the sin()'s in |~Ez|. For the third figure
+%we plotted |~Hz| for a TE wave (as |~Hz| = 0 for a TM wave) with the same
+%parameters as we had in Pt. a). We should once more be expecting a
+%sinusoidal function with a max amplitude of 1 (cnosen Ho) for the output, 
+%which is indeed what we see on our surface plot.
+
+
 %% Part c) Write a code for one of the plots where the user has to choose some options.  
 % This involves a prompt to the screen where the user would enter some 
 % information, e.g., which mode, or a value for a, or which type of plot.
 % Show a couple of example outputs.
+
+%Comments for Part c)
+%We decided to tie all of what we learned about waveguides together in one
+%go by asking the user for which wave type (TE or TM),a,b,mode,carrier
+%frequency, field strength, phasor vector magnitude component, & what type 
+%of plot (1-D cross-sectional (spits out both side and front views @  
+%y = b/2 and x = a/2), 2-D contour, or 3-D surface). When going through the
+%questions, the user is prompted to put in feasible values such as a
+%carrier frequency that is => the cutoff frequency fmn, or the modes that
+%work given the selected a and b values.
 
 %All of what's set up below (parameters, directions, other conventions, etc.)
 %is wrt the diagram that was provided for this lab.
@@ -227,7 +266,7 @@ while ~(component == 1 | component == 2 | component == 3 | component == 4 | comp
         component = input('Please enter a 1 for |~Ex|, 2 for |~Ey|, 3 for |~Ez|, 4 for |~Hx|, 5 for |~Hy|, 6 for |~Hz|: \n');
 end
 
-% What plot and view?
+% What plot?
 disp('What kind of plot is preferred?')
 plot_type = input('Enter 1 for a 1-D cross-section plot, 2 for a 2-D contour plot, 3 for a 3-D surface plot: \n');
 
