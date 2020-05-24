@@ -5,7 +5,7 @@
 %-------------------------------------------------------------------------%
 
 % Lab student co-authors: Regan Garner, Grace Semerjian
-% Date: 5/?/2020
+% Date: 5/17/2020
 
 %% Clear out junk
 clear, clc, close all
@@ -34,6 +34,12 @@ grid on
 title('~I(z) for L = 1.25*lambda Dipole Antenna')
 xlabel('~I(z) [A]')
 ylabel('z [m]')
+
+%Comments for Part 1)
+%As we can see with the figure created, ~I(z) resembles the intermediate
+%plot of L = 1*lambda and L = 1.5*lambda. This is expected since ours is L
+%= 1.25* lambda. As another check we see that ~I(z) does indeed go to zero
+%at z = -/+ L/2
 
 
 %% Part 2) Generate a polar plot of the normalized radiation intensity 
@@ -116,6 +122,16 @@ Savg1_max = max(Savg1);
 %This calculation was rerun again because of the 'pi/2 - theta#' terms from
 %before, they were not computationally correct, only aesthecially correct
 
+%Comments for Part 2)
+%Again, our F(theta) plot for the L = 1.25*lambda plot should look like the
+%intermediate plot of the 1*lambda and 1.5*lambda plots from Fig. 9-17.
+%Ours does indeed look like it's supposed to with the small 4 leaf clover 
+%lobes centered around the origin and the main lobes (peak at 1) centered
+%around theta = 90 degrees. Note that the commented out plots were the L =
+%0.5*lambda, 1*lambda, and 1.5*lambda plots as something to check against.
+%We also didn't realize that for Part 4) we'd be calculating S(theta) and
+%just did it prematurely here. 
+
 
 %% Part 3) The pattern solid angle OmegaP and directivity D are measures of 
 %how narrow an antenna’s radiation pattern is. They are related by D = 
@@ -125,7 +141,7 @@ Savg1_max = max(Savg1);
 %steps above. The integration can be approximated by OmegaP approximately = 
 %2pi*sum(Fi(theta))*delta(theta). You’ll need to define an increment of F 
 %for each increment of theta. The smaller the increment, the more accurate 
-%the approximation. Answers will vary a bit, but you should get OmegaP ? 
+%the approximation. Answers will vary a bit, but you should get OmegaP = 
 %3.8. Alternately, you can use an integration routine in MATLAB if you prefer. 
 
 %Going with integration method
@@ -148,6 +164,11 @@ fprintf('The pattern solid angle OmegaP for the 1.25*lambda dipole antenna is: '
 disp(OmegaP)
 D = (4*pi)/OmegaP;
 fprintf('The directivity D for the 1.25*lambda dipole antenna is: %4.4f\n',D)
+
+%Comments for Part 3)
+%Our L = 1.25*lambda dipole antenna has more directivity than the 0.5*lambda
+%antenna as expected (visually it's more elongated at its peak, beta, and
+%thus its OmegaP is smaller too)
 
 
 %% Part 4) Lastly, make a series of polar plots of S(theta) for L from
@@ -222,6 +243,10 @@ hold on
 polar(theta2,Savg2);
 title('(Not normalized) Radiation pattern for L = 1.5*lambda')
 
+%Comments for Part 4)
+%The not normalized plots should follow the normalized plots as far as
+%shape goes, and it appears that our plots follow that. 
+
 
 %% Extra Credit. Using the command getframe in your program, you should be 
 %able to save each plot, and then use the command movie to run them as an 
@@ -261,4 +286,8 @@ end
 
 %The animation itself
 movie(figure(12),F)
+
+%Comments for Extra Credit
+%Man that was cool, still wish I understood the math a bit better to
+%correlate to the pictures more easily.
 
